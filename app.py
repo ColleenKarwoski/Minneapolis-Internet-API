@@ -12,7 +12,8 @@ from flask import Flask, jsonify
 # Database Setup
 #################################################
 
-engine = create_engine("sqlite:///C:/Users/Dan/Documents/Python Scripts/Project-3/Data/isp.sqlite")
+# engine = create_engine("sqlite:///C:/Users/Dan/Documents/Python Scripts/Project-3/Data/isp.sqlite")
+engine = create_engine("sqlite:///Data/isp.sqlite")
 
 Base = automap_base()
 
@@ -21,35 +22,6 @@ Base.prepare(autoload_with=engine)
 Base.classes.keys()
 
 minneapolis_centurylink = Base.classes.Minneapolis_Centurylink
-
-# class ISP(Base):
-#     __tablename__ = 'Minneapolis_Centurylink'
-#     address_full = Column(String, primary_key=True)
-#     major_city = Column(String)
-#     state = Column(String)
-#     lat = Column(Float)
-#     lon = Column(Float)
-#     block_group = Column(Float)
-#     collection_datetime = Column(DateTime)
-#     provider = Column(String)
-#     price = Column(Float)
-#     speed_down = Column(Float)
-#     speed_up = Column(Float)
-#     speed_unit = Column(String)
-#     technology = Column(String)
-#     package = Column(String)
-#     fastest_speed_down = Column(Float)
-#     fastest_speed_price = Column(Float)
-#     speed_down_bins = Column(String)
-#     redlining_grade = Column(String)
-#     race_perc_non_white = Column(Float)
-#     race_quantile = Column(String)
-#     median_household_income = Column(Float)
-#     income_dollars_below_median = Column(Float)
-#     income_level = Column(String)
-#     ppl_per_sq_mile = Column(Float)
-#     n_providers = Column(Float)
-#     internet_perc_broadband = Column(Float)
 
 #################################################
 # Flask Setup
@@ -65,8 +37,6 @@ app = Flask(__name__)
 @app.route("/")
 def welcome():
     session = Session(engine)
-
-    #data = session.query(minneapolis_centurylink).all()
 
     data = session.query(minneapolis_centurylink.address_full, \
                         minneapolis_centurylink.major_city, \
