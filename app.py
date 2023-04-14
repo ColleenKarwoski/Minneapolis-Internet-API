@@ -28,6 +28,9 @@ minneapolis_centurylink = Base.classes.Minneapolis_Centurylink
 #################################################
 from flask_cors import CORS
 
+# requires flask-cors to be installed
+# pip install -U flask-cors
+
 app = Flask(__name__)
 
 cors = CORS(app)
