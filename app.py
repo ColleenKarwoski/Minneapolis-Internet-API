@@ -26,8 +26,11 @@ minneapolis_centurylink = Base.classes.Minneapolis_Centurylink
 #################################################
 # Flask Setup
 #################################################
+from flask_cors import CORS
+
 app = Flask(__name__)
 
+cors = CORS(app)
 
 #################################################
 # Flask Routes
