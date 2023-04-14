@@ -1,7 +1,9 @@
-html,
+#map,
 body,
-#map-id {
+html {
   height: 100%;
-  padding: 0;
-  margin: 0;
+}
+
+h1 {
+  text-align: center;
 }
