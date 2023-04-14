@@ -111,6 +111,59 @@ def welcome():
 
     return jsonify(dataArray)
 
+@app.route("/blockGroups")
+def blockGroup():
+    session = Session(engine)
+
+    data = session.query(minneapolis_centurylink.lat, \
+                minneapolis_centurylink.lon, \
+                minneapolis_centurylink.block_group,\
+                minneapolis_centurylink.price, \
+                minneapolis_centurylink.speed_down, \
+                minneapolis_centurylink.speed_up, \
+                minneapolis_centurylink.speed_unit, \
+                minneapolis_centurylink.technology, \
+                minneapolis_centurylink.package, \
+                minneapolis_centurylink.fastest_speed_down,	\
+                minneapolis_centurylink.fastest_speed_price, \
+                minneapolis_centurylink.speed_down_bins, \
+                minneapolis_centurylink.redlining_grade, \
+                minneapolis_centurylink.median_household_income, \
+                minneapolis_centurylink.income_level, \
+                minneapolis_centurylink.n_providers, \
+                minneapolis_centurylink.internet_perc_broadband). \
+                group_by(minneapolis_centurylink.block_group, minneapolis_centurylink.lat, minneapolis_centurylink.lon). \
+                all()
+
+    dataArray = []
+
+    for lat, lon, block_group, price, speed_down, speed_up, speed_unit, technology, \
+        package, fastest_speed_down, fastest_speed_price, speed_down_bins, redlining_grade, \
+        median_household_income, income_level, n_providers, internet_perc_broadband in data:
+        
+        rowData = {}
+        rowData["lat"] =  lat
+        rowData["lon"] =  lon
+        rowData["block_group"] =  block_group
+        rowData["price"] =  price
+        rowData["speed_down"] =  speed_down
+        rowData["speed_up"] =  speed_up
+        rowData["speed_unit"] =  speed_unit
+        rowData["technology"] =  technology
+        rowData["package"] =  package
+        rowData["fastest_speed_down"] =  fastest_speed_down
+        rowData["fastest_speed_price"] =  fastest_speed_price
+        rowData["speed_down_bins"] =  speed_down_bins
+        rowData["redlining_grade"] =  redlining_grade
+        rowData["median_household_income"] =  median_household_income
+        rowData["income_level"] =  income_level
+        rowData["n_providers"] =  n_providers
+        rowData["internet_perc_broadband"] =  internet_perc_broadband
+
+        dataArray.append(rowData)
+
+    return jsonify(dataArray)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
