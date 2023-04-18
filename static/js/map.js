@@ -1,7 +1,9 @@
 
+// [44.9778, -93.2650]
+
 let myMap = L.map("map", {
-    center: [44.9778, -93.2650],
-    zoom: 9
+    center: [44.966278, -93.267823],
+    zoom: 12
   });
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -11,16 +13,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 let queryUrl = 'http://127.0.0.1:5000/';
 let blockGroupsUrl = 'http://127.0.0.1:5000/blockGroups'
 
-d3.json(queryUrl).then(function (data) {
+d3.json(blockGroupsUrl).then(function (data) {
     //console.log(data);
-    makeMap(data);
+    createGroupedMap(data);
     //createGroupedMap(data);
 });
 
 function makeMap(data){
 
     //console.log(data.length);
-    console.log(data[0]);
+    //console.log(data[0]);
     //console.log(data[0].lat);
 
     for (let i = 0; i < data.length; i++) {
@@ -37,17 +39,69 @@ function makeMap(data){
 };
 
 function createGroupedMap(data){
-    L.polygon([
-        [33.7490, -84.3880],
-        [32.0809, -81.0912],
-        [30.3322, -81.6557],
-        [32.3792, -86.3077]
-      ], {
-        color: "purple",
-        fillColor: "purple",
-        fillOpacity: 0.75
+  //console.log(data)
+
+  //console.log(data[0]['latstring'].length)
+
+  for(let i = 0; i < data.length; i++){
+
+    let row = data[i];
+
+    //console.log(row)
+
+    let coordinates = [];
+
+    let grade = row.redlining_grade
+
+    let rowColor = getColor(grade);
+    let opacity = getOpacity(grade)
+
+    //console.log(rowColor)
+
+    // console.log(row.latstring.length)    
+    // console.log(row.lonstring.length)
+
+    for(let c = 0; c < row.latstring.length; c++){
+      //let latlng = L.LatLng(row.latstring[c], row.lonstring[c])
+      //coordinates.push(latlng)
+      coordinates.push([row.latstring[c], row.lonstring[c]])
+    };
+
+    coordinates.sort(function(a,b){
+      // console.log(a)
+      // console.log(b)
+      return a[0] - b[0] || b[1] - a[1];
+    });
+
+    //console.log(coordinates)
+    
+    //console.log(L.latlng([coordinates]))
+
+    L.polygon([coordinates], 
+      {
+        color: rowColor,
+        opacity: opacity,
+        fillColor: rowColor,
+        fillOpacity: opacity
       }).addTo(myMap);
+  }
 };
+
+function getColor(c) {
+  return c === 'D'  ? "#b56f00" :
+         c === 'C'  ? "#7d8400" :
+         c === 'B' ? "#8bb300" :
+         c === 'A' ? "#57c73a" :
+                          "#616262";
+}
+
+function getOpacity(o){
+  return o === 'D'  ? 0.75 :
+         o === 'C'  ? 0.8 :
+         o === 'B' ? 0.9 :
+         o === 'A' ? 1 :
+                          0.7;
+}
 
 
   

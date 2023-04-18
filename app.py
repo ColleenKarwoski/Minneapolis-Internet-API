@@ -22,6 +22,7 @@ Base.prepare(autoload_with=engine)
 Base.classes.keys()
 
 minneapolis_centurylink = Base.classes.Minneapolis_Centurylink
+minneapolis_centurylink_grouped = Base.classes.Minneapolis_Centurylink_Grouped
 
 #################################################
 # Flask Setup
@@ -115,35 +116,34 @@ def welcome():
 def blockGroup():
     session = Session(engine)
 
-    data = session.query(minneapolis_centurylink.lat, \
-                minneapolis_centurylink.lon, \
-                minneapolis_centurylink.block_group,\
-                minneapolis_centurylink.price, \
-                minneapolis_centurylink.speed_down, \
-                minneapolis_centurylink.speed_up, \
-                minneapolis_centurylink.speed_unit, \
-                minneapolis_centurylink.technology, \
-                minneapolis_centurylink.package, \
-                minneapolis_centurylink.fastest_speed_down,	\
-                minneapolis_centurylink.fastest_speed_price, \
-                minneapolis_centurylink.speed_down_bins, \
-                minneapolis_centurylink.redlining_grade, \
-                minneapolis_centurylink.median_household_income, \
-                minneapolis_centurylink.income_level, \
-                minneapolis_centurylink.n_providers, \
-                minneapolis_centurylink.internet_perc_broadband). \
-                group_by(minneapolis_centurylink.block_group, minneapolis_centurylink.lat, minneapolis_centurylink.lon). \
-                all()
+    data = session.query(minneapolis_centurylink_grouped.latstring, \
+                    minneapolis_centurylink_grouped.lonstring, \
+                    minneapolis_centurylink_grouped.block_group,\
+                    minneapolis_centurylink_grouped.price, \
+                    minneapolis_centurylink_grouped.speed_down, \
+                    minneapolis_centurylink_grouped.speed_up, \
+                    minneapolis_centurylink_grouped.speed_unit, \
+                    minneapolis_centurylink_grouped.technology, \
+                    minneapolis_centurylink_grouped.package, \
+                    minneapolis_centurylink_grouped.fastest_speed_down,	\
+                    minneapolis_centurylink_grouped.fastest_speed_price, \
+                    minneapolis_centurylink_grouped.speed_down_bins, \
+                    minneapolis_centurylink_grouped.redlining_grade, \
+                    minneapolis_centurylink_grouped.median_household_income, \
+                    minneapolis_centurylink_grouped.income_level, \
+                    minneapolis_centurylink_grouped.n_providers, \
+                    minneapolis_centurylink_grouped.internet_perc_broadband). \
+                    all()
 
     dataArray = []
 
-    for lat, lon, block_group, price, speed_down, speed_up, speed_unit, technology, \
+    for latstring, lonstring, block_group, price, speed_down, speed_up, speed_unit, technology, \
         package, fastest_speed_down, fastest_speed_price, speed_down_bins, redlining_grade, \
         median_household_income, income_level, n_providers, internet_perc_broadband in data:
         
         rowData = {}
-        rowData["lat"] =  lat
-        rowData["lon"] =  lon
+        rowData["latstring"] =  latstring.split(',')
+        rowData["lonstring"] =  lonstring.split(',')
         rowData["block_group"] =  block_group
         rowData["price"] =  price
         rowData["speed_down"] =  speed_down
