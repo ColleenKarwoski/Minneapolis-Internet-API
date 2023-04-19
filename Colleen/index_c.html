@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Basic Map</title>
+
+  <link rel="stylesheet" href="style_c.css" type="text/css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+</head>
+
+<body>
+  
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script defer src="stackedbar.js"></script>
+  <div id="myDiv"></div>
+<div class="title">  
+  <h2>Download Speed by Demographics of Census block group</h2>
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Income')">Income</button>
+  <button class="tablinks" onclick="openTab(event, 'Race')">Race</button>
+  <button class="tablinks" onclick="openTab(event, 'Redline Grade')">Redline Grade</button>
+</div>
+
+<div id="Income" class="tabcontent"></div>
+<div id="Race" class="tabcontent"></div>
+<div id="Redline Grade" class="tabcontent"></div>
+
+
+  <!-- The div where we'll insert our map -->
+ <!--  <div id="map"></div> -->
+
+ <!--The div where we'll insert out graph-->
+
+  
+ <div id="graph-container"></div>
+ <div id="tooltip" class="tooltip"></div>
+
+  <!-- JavaScript file -->
+  <!--<script type="text/javascript" src="map.js"></script>-->
+</body>
+
+</html>
