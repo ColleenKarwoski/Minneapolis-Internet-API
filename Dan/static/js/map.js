@@ -61,7 +61,10 @@ function createGroupedMap(data){
         opacity: opacity,
         fillColor: rowColor,
         fillOpacity: opacity
-      }).addTo(myMap);
+      }).bindPopup(`<h3>Redlining Grade - ${grade}</h3><hr>
+                    <p>Income Level: ${row.income_level}</p>
+                    <p>Speed Down Bin: ${row.speed_down_bins}</p>` 
+        ).addTo(myMap);
   }
 
   let legend = L.control({position: 'bottomright'});
@@ -69,7 +72,7 @@ function createGroupedMap(data){
   legend.onAdd = function() {
     let div = L.DomUtil.create('div', 'mapLegend');
     labels = ['<strong>Redlining Grade</strong>'];
-    bins = ['A','B','C','D','E'];
+    bins = ['A','B','C','D','N/A'];
 
     labels.push("<table>");
 
