@@ -30,4 +30,17 @@ The purpose of this project is to explore and analyze demographics in the Minnea
 - Used DB Browser for SQLite to troubleshoot database class issues
 - Created the API with SQLAlchemy and Flask to return each Jsonified class on separate paths
 
+## Visualization Explanations 
 
+- Map of Minneaplis by Block Group
+- Stacked Bar Chart with 3 views
+- Pie Charts created using ApexCharts.js to showcase Icome Level and the technology type 
+
+## Contributing Members
+
+Amy Baker, Lexie Fallow, Colleen Karwoski, Dan Lee
+
+## Data Sources
+- Kaggle https://www.kaggle.com/datasets/michaelbryantds/internet-speeds-and-prices?select=speed_price_centurylink.csv
+- Git Hub - https://github.com/the-markup/investigation-isp
+- Article - https://themarkup.org/show-your-work/2022/10/19/how-we-uncovered-disparities-in-internet-deals
