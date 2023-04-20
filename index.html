@@ -7,6 +7,7 @@
   
   <!-- D3 library -->
   <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -22,12 +23,36 @@
   <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 
+<div class="title">  
+  <h2>Map of Minneapolis and Redlining Grades</h2>
+</div>
+
 <body>
   <!-- The div where we'll insert our map -->
   <div id="map"></div>
  
   <!-- JavaScript file -->
-  <script type="text/javascript" src="static/js/map.js"></script>
+  <script type="text/javascript" src="Dan/static/js/map.js"></script>
+</body>
+
+<div id="myDiv"></div>
+<div class="title">  
+  <h2>Download Speed by Demographics of Census block group</h2>
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Income')">Income</button>
+  <button class="tablinks" onclick="openTab(event, 'Race')">Race</button>
+  <button class="tablinks" onclick="openTab(event, 'Redline Grade')">Redline Grade</button>
+</div>
+
+<body>
+<div id="Income" class="tabcontent"></div>
+<div id="Race" class="tabcontent"></div>
+<div id="Redline Grade" class="tabcontent"></div>
+
+ <div id="graph-container"></div>
+ <div id="tooltip" class="tooltip"></div>
+ 
+ <script defer src="Colleen/stackedbar.js"></script>
 </body>
 
 </html>

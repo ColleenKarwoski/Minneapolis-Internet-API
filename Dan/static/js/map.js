@@ -16,32 +16,10 @@ let blockGroupsUrl = 'http://127.0.0.1:5000/blockGroups'
 d3.json(blockGroupsUrl).then(function (data) {
     //console.log(data);
     createGroupedMap(data);
-    //createGroupedMap(data);
 });
 
-function makeMap(data){
-
-    //console.log(data.length);
-    //console.log(data[0]);
-    //console.log(data[0].lat);
-
-    for (let i = 0; i < data.length; i++) {
-        let home = data[i];
-        let coordinates = [home.lat, home.lon];
-
-        //console.log(coordinates);
-        L.marker(coordinates)
-            .bindPopup(`<h1>${home.address_full}</h1> <hr> <h3>Fastest Speed Down ${home.fastest_speed_down}</h3>`)
-            .addTo(myMap);
-      }
-
-    //myMap.addLayer(markers);
-};
 
 function createGroupedMap(data){
-  //console.log(data)
-
-  //console.log(data[0]['latstring'].length)
 
   for(let i = 0; i < data.length; i++){
 
@@ -85,13 +63,43 @@ function createGroupedMap(data){
         fillOpacity: opacity
       }).addTo(myMap);
   }
+
+  let legend = L.control({position: 'bottomright'});
+
+  legend.onAdd = function() {
+    let div = L.DomUtil.create('div', 'mapLegend');
+    labels = ['<strong>Redlining Grade</strong>'];
+    bins = ['A','B','C','D','E'];
+
+    labels.push("<table>");
+
+    for (let i = 0; i < bins.length; i++) {
+
+            labels.push(
+                            '<tr><td style="background-color: '
+                             + getColor(bins[i]) + '; width: 50px;">&nbsp;</td>' 
+                             + '<td>' + bins[i] + "</td></tr>")
+
+            //console.log(labels);
+            
+        }
+        labels.push("</table>");
+        div.innerHTML = labels.join('');
+        
+        //console.log(div);
+
+    return div;
+    };
+
+legend.addTo(myMap);
+
 };
 
 function getColor(c) {
-  return c === 'D'  ? "#b56f00" :
-         c === 'C'  ? "#7d8400" :
-         c === 'B' ? "#8bb300" :
-         c === 'A' ? "#57c73a" :
+  return c === 'D'  ? "#2a4858" :
+         c === 'C'  ? "#005aae" :
+         c === 'B' ? "#008a99" :
+         c === 'A' ? "#34fa59" :
                           "#616262";
 }
 

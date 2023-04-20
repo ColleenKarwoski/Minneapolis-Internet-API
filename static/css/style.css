@@ -7,3 +7,68 @@ html {
 h1 {
   text-align: center;
 }
+
+.mapLegend {
+  color: #555;
+  padding: 6px 8px;
+  font: 12px Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  margin: 0;
+}
+
+  .title {
+    text-align: center;
+    font-size: 28px;
+  }
+
+  #selDataset {
+    font-size: 17px;
+    padding: 10px;
+    width: 200px;
+  }
+
+  .tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+  
+  .tab button {
+    background-color: inherit;
+    float: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 22px;
+  }
+  
+  .tab button:hover {
+    background-color: #5e9eda;
+  }
+  
+  .tab button.active {
+    background-color: #5262be;
+  }
+  
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+  
+  .tooltip {
+    position: absolute;
+    padding: 8px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 9999;
+  }

@@ -12,8 +12,8 @@ from flask import Flask, jsonify
 # Database Setup
 #################################################
 
-engine = create_engine("sqlite:///C:/Users/Dan/Documents/Python Scripts/Project-3/Data/isp.sqlite")
-#engine = create_engine("sqlite:///Data/isp.sqlite")
+#engine = create_engine("sqlite:///C:/Users/Dan/Documents/Python Scripts/Project-3/Data/isp.sqlite")
+engine = create_engine("sqlite:///Data/isp.sqlite")
 
 Base = automap_base()
 
