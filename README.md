@@ -18,7 +18,7 @@ The purpose of this project is to explore and analyze demographics in the Minnea
   - Plotly
   - D3
   - ApexCharts
-- Css
+- CSS
 - HTML
 
 ## Data Wrangling
@@ -35,6 +35,28 @@ The purpose of this project is to explore and analyze demographics in the Minnea
 - Map of Minneaplis by Block Group
 - Stacked Bar Chart with 3 views
 - Pie Charts created using ApexCharts.js to showcase Icome Level and the technology type 
+
+## Files
+The individual charts were put into the subfolders along with chart-specific HTML files. 
+- Colleen/stackedbar.js
+- Dan/static/js/map.js
+- Pie chart files/pie.js
+
+Data Cleansing files
+- data_selection.ipynb was used to pull the data in and manipulate it into a SQLite db.
+- sqlalchemy_api.ipynb was the test file to create the api that is made available by app.py
+
+Data files
+- Data/isp.sqlite
+- minneapolis_centurylink_plans.csv
+
+In order to run
+- Start the API via the base level app.py file locally
+- Use the base level index.html file to display, running 'python -m http.server' to avoid CORS errors
+
+
+
+
 
 ## Contributing Members
 
