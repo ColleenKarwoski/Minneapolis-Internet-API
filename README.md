@@ -5,6 +5,9 @@
 ## Project Intro/Objective
 The purpose of this project is to explore and analyze demographics in the Minneapolis area and the effects on internet service. The main Internet Service Provided we will be analyzing will be CenturyLink. 
 
+Presentation
+- Project 3 - Group 7.pdf
+
 ## Tools Used
 - DB Browser for SQLite
 - Python
